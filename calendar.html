@@ -301,6 +301,72 @@ body {
   .ev-dot { width: 6px; height: 6px; }
   .day-panel, .cal-card { margin: 12px 16px 0; }
 }
+
+/* ── MBTI Personality Quiz ── */
+.brain-btn { width:36px; height:36px; background:#eff6ff; color:#185FA5; border:none; border-radius:50%; cursor:pointer; margin-right:6px; display:flex; align-items:center; justify-content:center; flex-shrink:0; }
+.brain-btn:active { background:#dbeafe; }
+.mbti-overlay { position:fixed; inset:0; background:#fff; z-index:2000; display:flex; flex-direction:column; overflow:hidden; }
+.mbti-screen { flex:1; display:flex; flex-direction:column; min-height:0; }
+#mbti-s-welcome, #mbti-s-result { overflow-y:auto; -webkit-overflow-scrolling:touch; }
+#mbti-s-quiz { overflow:hidden; }
+/* Welcome */
+.mbti-welcome-body { flex:1; display:flex; flex-direction:column; align-items:center; justify-content:center; padding:48px 28px; padding-top:calc(48px + var(--safe-top)); text-align:center; }
+.mbti-w-icon { font-size:52px; line-height:1; margin-bottom:16px; }
+.mbti-w-h { font-size:22px; font-weight:800; color:#1a1a1a; margin-bottom:10px; }
+.mbti-w-p { font-size:14px; color:#6b7280; line-height:1.7; margin-bottom:6px; }
+.mbti-w-resume { font-size:13px; color:#185FA5; font-weight:600; background:#eff6ff; padding:8px 16px; border-radius:20px; margin:8px 0 16px; display:inline-block; }
+.mbti-w-gap { height:16px; }
+.mbti-btn-primary { width:100%; max-width:300px; padding:15px; background:#185FA5; color:#fff; border:none; border-radius:14px; font-size:16px; font-weight:700; cursor:pointer; font-family:inherit; margin-bottom:10px; }
+.mbti-btn-primary:active { background:#144f8c; transform:scale(0.98); }
+.mbti-btn-ghost { background:transparent; border:none; color:#9ca3af; font-size:14px; cursor:pointer; font-family:inherit; padding:10px 16px; display:block; }
+/* Quiz Header */
+.mbti-q-hd { display:flex; align-items:center; gap:10px; padding:12px 16px; padding-top:calc(12px + var(--safe-top)); border-bottom:1px solid #f3f4f6; flex-shrink:0; }
+.mbti-x { width:30px; height:30px; background:#f3f4f6; border:none; border-radius:50%; cursor:pointer; font-size:13px; color:#6b7280; display:flex; align-items:center; justify-content:center; font-family:inherit; }
+.mbti-x:active { background:#e5e7eb; }
+.mbti-prog { flex:1; height:6px; background:#f3f4f6; border-radius:3px; }
+.mbti-prog-f { height:6px; border-radius:3px; background:#185FA5; transition:width 0.3s; }
+.mbti-cnt { font-size:12px; color:#9ca3af; font-weight:600; min-width:38px; text-align:right; }
+/* Question body */
+.mbti-q-body { flex:1; padding:28px 20px 16px; overflow-y:auto; -webkit-overflow-scrolling:touch; }
+@keyframes mbtiIn { from { opacity:0; transform:translateY(6px); } to { opacity:1; transform:translateY(0); } }
+.mbti-q-anim { animation:mbtiIn 0.18s ease; }
+.mbti-q-lbl { font-size:11px; font-weight:700; color:#185FA5; letter-spacing:0.1em; text-transform:uppercase; margin-bottom:10px; }
+.mbti-q-txt { font-size:17px; font-weight:600; line-height:1.75; color:#1a1a1a; }
+/* Scale */
+.mbti-scale-area { padding:20px 20px 0; flex-shrink:0; }
+.mbti-scale-ends { display:flex; justify-content:space-between; font-size:11px; color:#9ca3af; margin-bottom:10px; }
+.mbti-scale-row { display:flex; gap:8px; }
+.mbti-s-btn { flex:1; aspect-ratio:1; max-width:58px; border:2px solid #e5e7eb; border-radius:50%; background:transparent; cursor:pointer; font-size:14px; font-weight:700; color:#9ca3af; display:flex; align-items:center; justify-content:center; transition:all 0.12s; font-family:inherit; }
+.mbti-s-btn:active { transform:scale(0.85); }
+.mbti-s-btn.sel { background:#185FA5; border-color:#185FA5; color:#fff; box-shadow:0 2px 8px rgba(24,95,165,0.35); }
+/* Quiz footer */
+.mbti-q-ft { display:flex; gap:10px; padding:14px 20px; padding-bottom:calc(14px + var(--safe-bottom)); border-top:1px solid #f3f4f6; flex-shrink:0; }
+.mbti-nav { flex:1; padding:13px; border-radius:12px; border:1.5px solid #e5e7eb; background:transparent; color:#374151; font-size:15px; font-weight:600; cursor:pointer; font-family:inherit; }
+.mbti-nav:active { background:#f3f4f6; }
+.mbti-nav.pri { background:#185FA5; border-color:#185FA5; color:#fff; }
+.mbti-nav.pri:active { background:#144f8c; }
+.mbti-nav:disabled { opacity:0.3; pointer-events:none; }
+/* Result */
+.mbti-res-body { padding:20px; padding-top:calc(20px + var(--safe-top)); padding-bottom:calc(20px + var(--safe-bottom)); }
+.mbti-res-top { display:flex; justify-content:flex-end; margin-bottom:8px; }
+.mbti-type-card { background:linear-gradient(135deg,#185FA5,#1d4ed8); border-radius:20px; padding:32px 24px; text-align:center; color:#fff; margin-bottom:20px; }
+.mbti-type-4 { font-size:52px; font-weight:900; letter-spacing:8px; line-height:1; margin-bottom:6px; }
+.mbti-type-nm { font-size:19px; font-weight:700; margin-bottom:6px; }
+.mbti-type-tl { font-size:13px; opacity:0.82; line-height:1.5; }
+.mbti-sec-h { font-size:11px; font-weight:700; color:#9ca3af; text-transform:uppercase; letter-spacing:0.08em; margin:20px 0 12px; }
+.mbti-dim { margin-bottom:12px; }
+.mbti-dim-hd { display:flex; justify-content:space-between; margin-bottom:5px; }
+.mbti-dim-lbl { font-size:13px; font-weight:500; color:#9ca3af; }
+.mbti-dim-lbl.w { font-weight:700; color:#1a1a1a; }
+.mbti-dim-bar { background:#f3f4f6; border-radius:4px; height:8px; overflow:hidden; margin-bottom:3px; }
+.mbti-dim-bar-f { height:8px; border-radius:4px; background:#185FA5; transition:width 0.8s cubic-bezier(0.4,0,0.2,1); }
+.mbti-dim-pcts { display:flex; justify-content:space-between; font-size:11px; color:#9ca3af; }
+.mbti-desc-card { background:#f9fafb; border-radius:14px; padding:16px; font-size:14px; color:#374151; line-height:1.8; }
+.mbti-res-btns { display:flex; gap:10px; margin-top:20px; }
+.mbti-btn-retake { flex:1; padding:14px; border-radius:12px; border:1.5px solid #e5e7eb; background:transparent; color:#374151; font-size:15px; font-weight:600; cursor:pointer; font-family:inherit; }
+.mbti-btn-retake:active { background:#f3f4f6; }
+.mbti-btn-close2 { flex:1; padding:14px; border-radius:12px; background:#185FA5; border:none; color:#fff; font-size:15px; font-weight:700; cursor:pointer; font-family:inherit; }
+.mbti-btn-close2:active { background:#144f8c; }
 </style>
 </head>
 <body>
@@ -309,6 +375,7 @@ body {
   <div class="header">
     <div class="header-top">
       <div class="app-title">Family Calendar</div>
+      <button class="brain-btn" id="btn-mbti" aria-label="Personality quiz"><i class="ti ti-brain" style="font-size:18px"></i></button>
       <button class="add-btn" id="btn-add" aria-label="Add event">
         <i class="ti ti-plus" style="font-size:20px"></i>
       </button>
@@ -372,6 +439,62 @@ body {
       <button class="btn-save" id="btn-save">Save event</button>
       <div class="btn-delete-row"><button class="btn-delete" id="btn-delete" style="display:none">Delete event</button></div>
       <div class="btn-cancel-row"><button class="btn-cancel" id="btn-cancel">Cancel</button></div>
+    </div>
+  </div>
+</div>
+
+<!-- MBTI Quiz Overlay -->
+<div class="mbti-overlay" id="mbti-overlay" style="display:none">
+  <!-- Welcome Screen -->
+  <div class="mbti-screen" id="mbti-s-welcome">
+    <div class="mbti-welcome-body">
+      <div class="mbti-w-icon">🧠</div>
+      <div class="mbti-w-h">MBTIパーソナリティ診断</div>
+      <p class="mbti-w-p">60問の質問に答えて、あなたの<br>性格タイプを診断しましょう。</p>
+      <div id="mbti-w-status"></div>
+      <div class="mbti-w-gap"></div>
+      <button class="mbti-btn-primary" id="mbti-start-btn">診断を始める</button>
+      <button class="mbti-btn-ghost" id="mbti-view-res-btn" style="display:none">前回の結果を見る</button>
+      <button class="mbti-btn-ghost" onclick="closeMbti()">閉じる</button>
+    </div>
+  </div>
+  <!-- Quiz Screen -->
+  <div class="mbti-screen" id="mbti-s-quiz" style="display:none">
+    <div class="mbti-q-hd">
+      <button class="mbti-x" onclick="closeMbti()">✕</button>
+      <div class="mbti-prog"><div class="mbti-prog-f" id="mbti-prog-f" style="width:0%"></div></div>
+      <span class="mbti-cnt" id="mbti-cnt">1/60</span>
+    </div>
+    <div class="mbti-q-body" id="mbti-q-body">
+      <div class="mbti-q-lbl" id="mbti-q-lbl">質問 1</div>
+      <div class="mbti-q-txt" id="mbti-q-txt"></div>
+    </div>
+    <div class="mbti-scale-area">
+      <div class="mbti-scale-ends"><span>全く違う</span><span>非常にそう思う</span></div>
+      <div class="mbti-scale-row" id="mbti-scale-row"></div>
+    </div>
+    <div class="mbti-q-ft">
+      <button class="mbti-nav" id="mbti-prev">← 前へ</button>
+      <button class="mbti-nav pri" id="mbti-next">次へ →</button>
+    </div>
+  </div>
+  <!-- Result Screen -->
+  <div class="mbti-screen" id="mbti-s-result" style="display:none">
+    <div class="mbti-res-body">
+      <div class="mbti-res-top"><button class="mbti-x" onclick="closeMbti()">✕</button></div>
+      <div class="mbti-type-card">
+        <div class="mbti-type-4" id="mbti-t4">----</div>
+        <div class="mbti-type-nm" id="mbti-tnm"></div>
+        <div class="mbti-type-tl" id="mbti-ttl"></div>
+      </div>
+      <div class="mbti-sec-h">各次元のスコア</div>
+      <div id="mbti-dims"></div>
+      <div class="mbti-sec-h">タイプの説明</div>
+      <div class="mbti-desc-card" id="mbti-tdesc"></div>
+      <div class="mbti-res-btns">
+        <button class="mbti-btn-retake" id="mbti-retake">やり直す</button>
+        <button class="mbti-btn-close2" onclick="closeMbti()">閉じる</button>
+      </div>
     </div>
   </div>
 </div>
@@ -591,6 +714,248 @@ document.addEventListener('keydown',e=>{ if(e.key==='Escape') closeModal(); });
 
 seed();
 renderAll();
+
+// ── MBTI Personality Quiz ──
+const MBTI_Q = [
+  {id:1,text:"初対面の人とでも、すぐに打ち解けて会話を楽しむことができる。",axis:"E"},
+  {id:2,text:"休日は外に出て人と会うよりも、一人で静かに過ごす方がリフレッシュできる。",axis:"I"},
+  {id:3,text:"自分の考えをまとめる時、頭の中で考えるより声に出して誰かと話す方が早い。",axis:"E"},
+  {id:4,text:"注目を浴びる状況や、大勢の前で話すことにあまり抵抗がない。",axis:"E"},
+  {id:5,text:"人混みや賑やかな場所に長くいると、どっと疲れてしまう。",axis:"I"},
+  {id:6,text:"自分の感情や考えを、自分の中だけに留めておくことが多い。",axis:"I"},
+  {id:7,text:"グループでの共同作業よりも、一人で集中して進めるタスクの方が得意だ。",axis:"I"},
+  {id:8,text:"パーティーなどの社交の場では、自分から積極的に話しかける方だ。",axis:"E"},
+  {id:9,text:"新しいコミュニティに参加する際、自分から積極的に輪に入っていく。",axis:"E"},
+  {id:10,text:"趣味や興味は、広く浅くよりも「狭く深く」追求したい。",axis:"I"},
+  {id:11,text:"誰かと一緒にいる時間が長すぎると、一人の時間を作ってエネルギーを充電する必要がある。",axis:"I"},
+  {id:12,text:"沈黙が続くと気まずくなり、自分から話題を振ることが多い。",axis:"E"},
+  {id:13,text:"じっくりと考えてからでないと、発言したり行動したりしない。",axis:"I"},
+  {id:14,text:"賑やかな空間にいると、自分も気分が高揚してエネルギーが湧いてくる。",axis:"E"},
+  {id:15,text:"メッセージのやり取りよりも、直接会ったり電話で話す方が好きだ。",axis:"E"},
+  {id:16,text:"物事を考える時、具体的な事実や過去の経験を重視する。",axis:"S"},
+  {id:17,text:"「もし〜だったら」という抽象的な可能性や未来について考えるのが好きだ。",axis:"N"},
+  {id:18,text:"新しいツールを使う時は、直感で触るより取扱説明書をしっかり読むタイプだ。",axis:"S"},
+  {id:19,text:"物事の表面的な事実よりも、背後にある隠された意味やパターンを見つけるのが得意だ。",axis:"N"},
+  {id:20,text:"斬新すぎるアイデアよりも、現実的で地に足のついた解決策の方が信頼できる。",axis:"S"},
+  {id:21,text:"細かい部分（ディテール）よりも、全体の大きな方向性（ビッグピクチャー）を把握する方が得意だ。",axis:"N"},
+  {id:22,text:"ルーティンワークや決められた手順を正確にこなすことに苦痛を感じない。",axis:"S"},
+  {id:23,text:"比喩表現や例え話をよく使って物事を説明する。",axis:"N"},
+  {id:24,text:"経験したことのない新しい理論よりも、実証されているデータの方を信じる。",axis:"S"},
+  {id:25,text:"常識や既存の枠組みにとらわず、常に新しいやり方を試したい。",axis:"N"},
+  {id:26,text:"目に見えるもの、手で触れられる「今、ここにある現実」を重視する。",axis:"S"},
+  {id:27,text:"何もないところからアイデアを出すブレインストーミングをしている時が一番楽しい。",axis:"N"},
+  {id:28,text:"作業をする時は、全体の流れよりも、目の前の具体的なタスクに集中する。",axis:"S"},
+  {id:29,text:"1つの物事から、様々なインスピレーションが連鎖的に湧いてくる。",axis:"N"},
+  {id:30,text:"出来事を人に話すときは、事実をありのままに順序立てて伝える。",axis:"S"},
+  {id:31,text:"決断を下す際、個人の感情よりも論理や客観的な事実を優先する。",axis:"T"},
+  {id:32,text:"チームの調和や、他者の感情を思いやることが何よりも大切だと思う。",axis:"F"},
+  {id:33,text:"議論をする時は、相手に共感するよりも「正しい結論」を導き出すことに重きを置く。",axis:"T"},
+  {id:34,text:"人から相談された時は、解決策を提案するよりも、まずは感情に寄り添うようにしている。",axis:"F"},
+  {id:35,text:"ルールや基準は、どんな事情がある人に対しても平等かつ厳格に適用されるべきだ。",axis:"T"},
+  {id:36,text:"批判的なフィードバックを受けると、論理的な指摘であっても個人的に傷ついてしまう。",axis:"F"},
+  {id:37,text:"物事が上手くいかない時、誰かの気持ちよりも「なぜ失敗したのか」のシステム上の原因を分析する。",axis:"T"},
+  {id:38,text:"「有能であること」よりも「思いやりがあること」の方が、人として高く評価されるべきだ。",axis:"F"},
+  {id:39,text:"感情的な議論は苦手で、事実に基づいた冷静な話し合いを好む。",axis:"T"},
+  {id:40,text:"決断によって誰かが傷つく可能性がある場合、合理的な判断であっても実行をためらう。",axis:"F"},
+  {id:41,text:"意見が対立した時、自分の正しさを証明するために議論を戦わせることに抵抗がない。",axis:"T"},
+  {id:42,text:"感謝や労いの言葉をかけられることが、何よりのモチベーションになる。",axis:"F"},
+  {id:43,text:"真実を伝えるためなら、多少相手にとって耳が痛いことでも率直に言うべきだ。",axis:"T"},
+  {id:44,text:"周りの人が不機嫌だったり悲しんでいたりすると、自分もそれに強く影響を受けてしまう。",axis:"F"},
+  {id:45,text:"チームで動く際、プロセスや雰囲気を良くすることよりも「結果を出すこと」が重要だ。",axis:"T"},
+  {id:46,text:"スケジュールは事前にしっかりと立てて、その通りに行動したい。",axis:"J"},
+  {id:47,text:"その時の気分や状況に合わせて、柔軟に予定を変更するのが好きだ。",axis:"P"},
+  {id:48,text:"デスク周りや部屋は、常に整理整頓されていないと落ち着かない。",axis:"J"},
+  {id:49,text:"締め切りギリギリになってから、爆発的な集中力を発揮することが多い。",axis:"P"},
+  {id:50,text:"旅行に行く時は、事前に行く場所やルートを細かく決めておきたい。",axis:"J"},
+  {id:51,text:"やるべき仕事や課題は先に終わらせてから、リラックスして遊びたい。",axis:"J"},
+  {id:52,text:"ルールや手順が厳格に決まっている環境よりも、自由度が高い環境の方が力を発揮できる。",axis:"P"},
+  {id:53,text:"未完了のタスクがあると気になってしまい、早く終わらせてスッキリしたい。",axis:"J"},
+  {id:54,text:"休日はあえて予定を入れず、その日の気分で何をするか決めることが多い。",axis:"P"},
+  {id:55,text:"決断を先延ばしにするよりも、早く結論を出して次のステップに進みたい。",axis:"J"},
+  {id:56,text:"計画通りに進めることよりも、予期せぬハプニングを楽しむ余裕がある。",axis:"P"},
+  {id:57,text:"メモやTO-DOリストを日常的に活用して、タスクを管理している。",axis:"J"},
+  {id:58,text:"作業を進めながら、途中で目標やアプローチを大きく変えることに抵抗がない。",axis:"P"},
+  {id:59,text:"物事が中途半端な状態で放置されているのが耐えられない。",axis:"J"},
+  {id:60,text:"選択肢はできるだけ最後まで絞らず、ギリギリまで可能性を残しておきたい。",axis:"P"},
+];
+
+const MBTI_INFO = {
+  INTJ:{name:'建築家',tagline:'想像力豊かな戦略家。あらゆる物事に計画を持ち込む。',desc:'独立心旺盛で知識欲が強く、長期的な計画を立てることが得意。自分のビジョンを実現するために粘り強く取り組みます。効率と完璧さを追求し、常に改善の余地を探しています。'},
+  INTP:{name:'論理学者',tagline:'革新的な発明家。知識への渇望が尽きない。',desc:'知的好奇心が旺盛で、抽象的な理論を愛し論理的思考を重視します。型にはまらない発想で複雑な問題を解決し、あらゆる可能性を追求します。'},
+  ENTJ:{name:'指揮官',tagline:'大胆かつ想像力豊かな強力なリーダー。常に道を切り拓く。',desc:'果断力があり、リーダーシップを発揮し目標達成に情熱を燃やします。効率と成果を追求し、長期的なビジョンで周囲を引っ張る天性のリーダーです。'},
+  ENTP:{name:'討論者',tagline:'賢くて好奇心旺盛な思考家。難問に立ち向かうことを楽しむ。',desc:'知識欲旺盛で議論を楽しみ、革新的なアイデアを探求します。既存の常識に挑戦し、創造的な解決策を見つけることに喜びを感じます。'},
+  INFJ:{name:'提唱者',tagline:'静かな信念を持つ神秘的な理想主義者。揺るぎない原則で行動する。',desc:'深い共感力と直感を持ち、人々の成長と社会の改善を願います。穏やかながら強い意志で理想の実現に向かって歩む、洞察力の高いタイプです。'},
+  INFP:{name:'仲介者',tagline:'誠実さと思いやりにあふれた詩人的精神の持ち主。',desc:'理想主義的で共感力が高く、深い価値観と夢を大切にします。自己表現と内省を通じて世界をより良くしたいと願い、真摯に人と向き合います。'},
+  ENFJ:{name:'主人公',tagline:'カリスマ的で感化力のあるリーダー。人々を魅了する。',desc:'カリスマ的なリーダーで他者の成長を支援することに喜びを感じます。人々の可能性を信じ、コミュニティの調和と発展を大切にします。'},
+  ENFP:{name:'運動家',tagline:'熱情的で創造的な自由人。常に微笑む理由を見つける。',desc:'熱情的で創造的、多くの可能性を見つけ出し人々を鼓舞します。人との繋がりを大切にし、楽観的な視野で世界を見渡すタイプです。'},
+  ISTJ:{name:'管理者',tagline:'現実的で信頼できる人物。頼れる能力と伝統の守護者。',desc:'責任感が強く、誠実で実用的。ルールと伝統を重んじ、確実に物事をやり遂げる信頼感あふれるタイプです。細部への注意と粘り強さが特徴です。'},
+  ISFJ:{name:'擁護者',tagline:'非常に献身的で心温かい守護者。大切な人を守り抜く。',desc:'献身的で思いやりがあり、大切な人を守り支えることに喜びを感じます。細やかな気配りと確かな責任感で、静かに周囲を支え続けます。'},
+  ESTJ:{name:'幹部',tagline:'優れた管理能力を持つ幹部。秩序と伝統の番人。',desc:'秩序と規律を重んじ、伝統や安定を守る力強いリーダーです。組織を効率的に運営し、明確な目標を着実に達成する実務能力の高いタイプです。'},
+  ESFJ:{name:'領事官',tagline:'非常に気配り上手で社交的。人気者で親切な協調の人。',desc:'思いやりがあり、社交的で周囲との調和を大切にします。人々の感情に敏感で、コミュニティの絆を強め皆が幸せでいられるよう尽力します。'},
+  ISTP:{name:'巨匠',tagline:'大胆かつ実践的な実験家。道具の達人。',desc:'論理的で実践的、問題解決に長けた観察眼の鋭い職人気質です。手を動かしながら学ぶことを好み、効率的かつ冷静に物事を解決します。'},
+  ISFP:{name:'冒険家',tagline:'柔軟で魅力的な芸術家。常に新しい可能性を探している。',desc:'穏やかで好奇心旺盛、現在の瞬間を大切にし芸術的感覚に優れます。自由を愛し、自分のペースで美しいものや体験を追求するタイプです。'},
+  ESTP:{name:'起業家',tagline:'賢くてエネルギッシュな知覚の達人。リスクを恐れない。',desc:'大胆で行動力があり、リスクを恐れずチャンスをつかみ取ります。現実的で問題解決能力が高く、スリルと刺激の中で最も輝くタイプです。'},
+  ESFP:{name:'エンターテイナー',tagline:'自発的でエネルギッシュ。人生は見せ物、楽しもう！',desc:'社交的で楽観的、人生を楽しみ周囲を明るくする天才です。今この瞬間を大切にし、人々に喜びと活力をもたらす存在感抜群のタイプです。'},
+};
+
+let mbti = { phase:'welcome', cur:0, ans:{} };
+let mbtiAdvancing = false;
+
+function openMbti(){
+  let savedRes=null, savedProg=null;
+  try{ savedRes=JSON.parse(localStorage.getItem('mbti_result')||'null'); }catch(e){}
+  try{ savedProg=JSON.parse(localStorage.getItem('mbti_progress')||'null'); }catch(e){}
+
+  const statusEl=document.getElementById('mbti-w-status');
+  const viewBtn=document.getElementById('mbti-view-res-btn');
+  const startBtn=document.getElementById('mbti-start-btn');
+
+  if(savedRes){
+    const info=MBTI_INFO[savedRes.type]||{};
+    statusEl.innerHTML=`<span class="mbti-w-resume">前回の診断：<strong>${savedRes.type}</strong>（${info.name||''}）</span>`;
+    viewBtn.style.display='';
+    startBtn.textContent='やり直す';
+    viewBtn.onclick=()=>{
+      mbti={phase:'result',cur:0,ans:savedRes.answers||{},type:savedRes.type,pct:savedRes.pct};
+      showMbtiScreen('result'); renderMbtiResult();
+    };
+    startBtn.onclick=()=>{
+      mbti={phase:'quiz',cur:0,ans:{}}; mbtiAdvancing=false;
+      localStorage.removeItem('mbti_result'); localStorage.removeItem('mbti_progress');
+      showMbtiScreen('quiz'); renderMbtiQ();
+    };
+  } else if(savedProg && Object.keys(savedProg.ans||{}).length>0){
+    const done=Object.keys(savedProg.ans).length;
+    statusEl.innerHTML=`<span class="mbti-w-resume">${done}問まで回答済み</span>`;
+    viewBtn.style.display='none';
+    startBtn.textContent='続きから始める';
+    mbti={phase:'welcome',cur:savedProg.cur||0,ans:savedProg.ans||{}};
+    startBtn.onclick=()=>{ mbti.phase='quiz'; showMbtiScreen('quiz'); renderMbtiQ(); };
+  } else {
+    statusEl.innerHTML='';
+    viewBtn.style.display='none';
+    startBtn.textContent='診断を始める';
+    mbti={phase:'welcome',cur:0,ans:{}};
+    startBtn.onclick=()=>{ mbti.phase='quiz'; showMbtiScreen('quiz'); renderMbtiQ(); };
+  }
+
+  showMbtiScreen('welcome');
+  document.getElementById('mbti-overlay').style.display='flex';
+}
+
+function closeMbti(){ document.getElementById('mbti-overlay').style.display='none'; }
+
+function showMbtiScreen(which){
+  ['welcome','quiz','result'].forEach(s=>{
+    const el=document.getElementById('mbti-s-'+s);
+    el.style.display = s===which ? 'flex' : 'none';
+  });
+}
+
+function renderMbtiQ(){
+  const q=MBTI_Q[mbti.cur], total=MBTI_Q.length;
+  document.getElementById('mbti-prog-f').style.width=(mbti.cur/total*100).toFixed(1)+'%';
+  document.getElementById('mbti-cnt').textContent=`${mbti.cur+1}/${total}`;
+  document.getElementById('mbti-q-lbl').textContent=`質問 ${mbti.cur+1}`;
+  document.getElementById('mbti-q-txt').textContent=q.text;
+  const ans=mbti.ans[q.id];
+  document.getElementById('mbti-scale-row').innerHTML=[1,2,3,4,5].map(v=>
+    `<button class="mbti-s-btn${ans===v?' sel':''}" onclick="setMbtiAns(${v})">${v}</button>`
+  ).join('');
+  document.getElementById('mbti-prev').disabled=(mbti.cur===0);
+  document.getElementById('mbti-next').textContent=mbti.cur===total-1?'結果を見る ✓':'次へ →';
+  const body=document.getElementById('mbti-q-body');
+  body.classList.remove('mbti-q-anim');
+  void body.offsetWidth;
+  body.classList.add('mbti-q-anim');
+}
+
+function setMbtiAns(v){
+  if(mbtiAdvancing) return;
+  const q=MBTI_Q[mbti.cur];
+  mbti.ans[q.id]=v;
+  document.querySelectorAll('.mbti-s-btn').forEach(b=>{
+    b.classList.toggle('sel',parseInt(b.textContent)===v);
+  });
+  saveMbtiProgress();
+  const isLast=mbti.cur===MBTI_Q.length-1;
+  mbtiAdvancing=true;
+  setTimeout(()=>{
+    mbtiAdvancing=false;
+    if(isLast) calcAndShowResult();
+    else { mbti.cur++; renderMbtiQ(); }
+  },350);
+}
+
+function mbtiPrev(){ if(mbtiAdvancing)return; if(mbti.cur>0){mbti.cur--;renderMbtiQ();} }
+function mbtiNext(){
+  if(mbtiAdvancing)return;
+  if(mbti.cur===MBTI_Q.length-1) calcAndShowResult();
+  else { mbti.cur++; renderMbtiQ(); }
+}
+
+function saveMbtiProgress(){
+  try{ localStorage.setItem('mbti_progress',JSON.stringify({cur:mbti.cur,ans:mbti.ans})); }catch(e){}
+}
+
+function calcAndShowResult(){
+  const sc={E:0,I:0,S:0,N:0,T:0,F:0,J:0,P:0}, cnt={E:0,I:0,S:0,N:0,T:0,F:0,J:0,P:0};
+  MBTI_Q.forEach(q=>{ const a=mbti.ans[q.id]||3; sc[q.axis]+=a; cnt[q.axis]++; });
+  const pct={};
+  'EISNTFJP'.split('').forEach(k=>{ pct[k]=cnt[k]>0?sc[k]/(5*cnt[k])*100:50; });
+  const type=[pct.E>=pct.I?'E':'I',pct.S>=pct.N?'S':'N',pct.T>=pct.F?'T':'F',pct.J>=pct.P?'J':'P'].join('');
+  mbti.type=type; mbti.pct=pct;
+  try{
+    localStorage.setItem('mbti_result',JSON.stringify({type,pct,answers:mbti.ans}));
+    localStorage.removeItem('mbti_progress');
+  }catch(e){}
+  showMbtiScreen('result');
+  renderMbtiResult();
+}
+
+function renderMbtiResult(){
+  const{type,pct}=mbti;
+  const info=MBTI_INFO[type]||{name:type,tagline:'',desc:''};
+  document.getElementById('mbti-t4').textContent=type;
+  document.getElementById('mbti-tnm').textContent=info.name;
+  document.getElementById('mbti-ttl').textContent=info.tagline;
+  document.getElementById('mbti-tdesc').textContent=info.desc;
+  const dims=[
+    {l:'E',r:'I',ll:'外向型 (E)',rl:'内向型 (I)'},
+    {l:'S',r:'N',ll:'感覚型 (S)',rl:'直観型 (N)'},
+    {l:'T',r:'F',ll:'思考型 (T)',rl:'感情型 (F)'},
+    {l:'J',r:'P',ll:'判断型 (J)',rl:'知覚型 (P)'},
+  ];
+  const dimsEl=document.getElementById('mbti-dims');
+  dimsEl.innerHTML='';
+  dims.forEach(d=>{
+    const lp=pct[d.l],rp=pct[d.r],tot=lp+rp,fp=tot>0?lp/tot*100:50;
+    const wl=fp>=50;
+    dimsEl.innerHTML+=`<div class="mbti-dim">
+      <div class="mbti-dim-hd">
+        <span class="mbti-dim-lbl${wl?' w':''}">${d.ll}</span>
+        <span class="mbti-dim-lbl${!wl?' w':''}">${d.rl}</span>
+      </div>
+      <div class="mbti-dim-bar"><div class="mbti-dim-bar-f" style="width:0%" data-w="${fp.toFixed(1)}"></div></div>
+      <div class="mbti-dim-pcts"><span>${lp.toFixed(0)}%</span><span>${rp.toFixed(0)}%</span></div>
+    </div>`;
+  });
+  document.getElementById('mbti-retake').onclick=()=>{
+    mbti={phase:'quiz',cur:0,ans:{}}; mbtiAdvancing=false;
+    localStorage.removeItem('mbti_result'); localStorage.removeItem('mbti_progress');
+    showMbtiScreen('quiz'); renderMbtiQ();
+  };
+  // Animate bars after paint
+  requestAnimationFrame(()=>requestAnimationFrame(()=>{
+    document.querySelectorAll('.mbti-dim-bar-f').forEach(el=>{
+      el.style.width=el.dataset.w+'%';
+    });
+  }));
+}
+
+document.getElementById('btn-mbti').addEventListener('click', openMbti);
+document.getElementById('mbti-prev').addEventListener('click', mbtiPrev);
+document.getElementById('mbti-next').addEventListener('click', mbtiNext);
 </script>
 </body>
 </html>
