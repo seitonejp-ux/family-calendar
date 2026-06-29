@@ -367,6 +367,12 @@ body {
 .mbti-btn-retake:active { background:#f3f4f6; }
 .mbti-btn-close2 { flex:1; padding:14px; border-radius:12px; background:#185FA5; border:none; color:#fff; font-size:15px; font-weight:700; cursor:pointer; font-family:inherit; }
 .mbti-btn-close2:active { background:#144f8c; }
+.mbti-tags { display:flex; flex-wrap:wrap; gap:8px; }
+.mbti-tag { padding:6px 14px; border-radius:20px; font-size:13px; font-weight:600; }
+.mbti-tag.str { background:#dcfce7; color:#166534; }
+.mbti-tag.wkn { background:#fee2e2; color:#991b1b; }
+.mbti-tag.job { background:#eff6ff; color:#1e40af; }
+.mbti-rel-text { font-size:14px; color:#374151; line-height:1.8; background:#f9fafb; border-radius:14px; padding:14px; }
 </style>
 </head>
 <body>
@@ -489,8 +495,14 @@ body {
       </div>
       <div class="mbti-sec-h">各次元のスコア</div>
       <div id="mbti-dims"></div>
-      <div class="mbti-sec-h">タイプの説明</div>
-      <div class="mbti-desc-card" id="mbti-tdesc"></div>
+      <div class="mbti-sec-h">強み</div>
+      <div class="mbti-tags" id="mbti-strengths"></div>
+      <div class="mbti-sec-h">弱み・注意点</div>
+      <div class="mbti-tags" id="mbti-weaknesses"></div>
+      <div class="mbti-sec-h">対人関係</div>
+      <div class="mbti-rel-text" id="mbti-relationships"></div>
+      <div class="mbti-sec-h">向いている仕事</div>
+      <div class="mbti-tags" id="mbti-jobs"></div>
       <div class="mbti-res-btns">
         <button class="mbti-btn-retake" id="mbti-retake">やり直す</button>
         <button class="mbti-btn-close2" onclick="closeMbti()">閉じる</button>
@@ -780,22 +792,22 @@ const MBTI_Q = [
 ];
 
 const MBTI_INFO = {
-  INTJ:{name:'建築家',tagline:'想像力豊かな戦略家。あらゆる物事に計画を持ち込む。',desc:'独立心旺盛で知識欲が強く、長期的な計画を立てることが得意。自分のビジョンを実現するために粘り強く取り組みます。効率と完璧さを追求し、常に改善の余地を探しています。'},
-  INTP:{name:'論理学者',tagline:'革新的な発明家。知識への渇望が尽きない。',desc:'知的好奇心が旺盛で、抽象的な理論を愛し論理的思考を重視します。型にはまらない発想で複雑な問題を解決し、あらゆる可能性を追求します。'},
-  ENTJ:{name:'指揮官',tagline:'大胆かつ想像力豊かな強力なリーダー。常に道を切り拓く。',desc:'果断力があり、リーダーシップを発揮し目標達成に情熱を燃やします。効率と成果を追求し、長期的なビジョンで周囲を引っ張る天性のリーダーです。'},
-  ENTP:{name:'討論者',tagline:'賢くて好奇心旺盛な思考家。難問に立ち向かうことを楽しむ。',desc:'知識欲旺盛で議論を楽しみ、革新的なアイデアを探求します。既存の常識に挑戦し、創造的な解決策を見つけることに喜びを感じます。'},
-  INFJ:{name:'提唱者',tagline:'静かな信念を持つ神秘的な理想主義者。揺るぎない原則で行動する。',desc:'深い共感力と直感を持ち、人々の成長と社会の改善を願います。穏やかながら強い意志で理想の実現に向かって歩む、洞察力の高いタイプです。'},
-  INFP:{name:'仲介者',tagline:'誠実さと思いやりにあふれた詩人的精神の持ち主。',desc:'理想主義的で共感力が高く、深い価値観と夢を大切にします。自己表現と内省を通じて世界をより良くしたいと願い、真摯に人と向き合います。'},
-  ENFJ:{name:'主人公',tagline:'カリスマ的で感化力のあるリーダー。人々を魅了する。',desc:'カリスマ的なリーダーで他者の成長を支援することに喜びを感じます。人々の可能性を信じ、コミュニティの調和と発展を大切にします。'},
-  ENFP:{name:'運動家',tagline:'熱情的で創造的な自由人。常に微笑む理由を見つける。',desc:'熱情的で創造的、多くの可能性を見つけ出し人々を鼓舞します。人との繋がりを大切にし、楽観的な視野で世界を見渡すタイプです。'},
-  ISTJ:{name:'管理者',tagline:'現実的で信頼できる人物。頼れる能力と伝統の守護者。',desc:'責任感が強く、誠実で実用的。ルールと伝統を重んじ、確実に物事をやり遂げる信頼感あふれるタイプです。細部への注意と粘り強さが特徴です。'},
-  ISFJ:{name:'擁護者',tagline:'非常に献身的で心温かい守護者。大切な人を守り抜く。',desc:'献身的で思いやりがあり、大切な人を守り支えることに喜びを感じます。細やかな気配りと確かな責任感で、静かに周囲を支え続けます。'},
-  ESTJ:{name:'幹部',tagline:'優れた管理能力を持つ幹部。秩序と伝統の番人。',desc:'秩序と規律を重んじ、伝統や安定を守る力強いリーダーです。組織を効率的に運営し、明確な目標を着実に達成する実務能力の高いタイプです。'},
-  ESFJ:{name:'領事官',tagline:'非常に気配り上手で社交的。人気者で親切な協調の人。',desc:'思いやりがあり、社交的で周囲との調和を大切にします。人々の感情に敏感で、コミュニティの絆を強め皆が幸せでいられるよう尽力します。'},
-  ISTP:{name:'巨匠',tagline:'大胆かつ実践的な実験家。道具の達人。',desc:'論理的で実践的、問題解決に長けた観察眼の鋭い職人気質です。手を動かしながら学ぶことを好み、効率的かつ冷静に物事を解決します。'},
-  ISFP:{name:'冒険家',tagline:'柔軟で魅力的な芸術家。常に新しい可能性を探している。',desc:'穏やかで好奇心旺盛、現在の瞬間を大切にし芸術的感覚に優れます。自由を愛し、自分のペースで美しいものや体験を追求するタイプです。'},
-  ESTP:{name:'起業家',tagline:'賢くてエネルギッシュな知覚の達人。リスクを恐れない。',desc:'大胆で行動力があり、リスクを恐れずチャンスをつかみ取ります。現実的で問題解決能力が高く、スリルと刺激の中で最も輝くタイプです。'},
-  ESFP:{name:'エンターテイナー',tagline:'自発的でエネルギッシュ。人生は見せ物、楽しもう！',desc:'社交的で楽観的、人生を楽しみ周囲を明るくする天才です。今この瞬間を大切にし、人々に喜びと活力をもたらす存在感抜群のタイプです。'},
+  INTJ:{name:'建築家',desc:'想像力が豊かで、戦略的な思考を持つ完璧主義者です。',strengths:['合理的な問題解決力','高い独立心','長期的なビジョン'],weaknesses:['他者の感情に鈍感','過度な完璧主義','伝統への反発'],relationships:'知的で深い議論を好みます。表面的な付き合いは苦手ですが、一度信頼した相手には非常に誠実です。',jobs:['ソフトウェアエンジニア','経営コンサルタント','データサイエンティスト']},
+  INTP:{name:'論理学者',desc:'知的好奇心が旺盛で、革新的な理論を愛する思考家です。',strengths:['独創的なアイデア','客観的な分析力','柔軟な思考'],weaknesses:['実行力の欠如','規則的作業への嫌悪','配慮の不足'],relationships:'自分のアイデアを共有できる相手を求めます。束縛を嫌い、お互いの自由を尊重します。',jobs:['プログラマー','システムアーキテクト','研究者']},
+  ENTJ:{name:'指揮官',desc:'大胆で意志が強く、目標達成へ突き進むリーダーです。',strengths:['強力な統率力','高い決断力','効率性の追求'],weaknesses:['支配的になりがち','他者への不寛容','妥協が苦手'],relationships:'共に成長し、目標に向かって切磋琢磨できるパートナーを求め、論理的な対話を重視します。',jobs:['起業家','経営幹部','プロジェクトマネージャー']},
+  ENTP:{name:'討論者',desc:'スマートで好奇心旺盛、知的な挑戦を愛する思考家です。',strengths:['豊かな発想力','機転が利く','変化への適応力'],weaknesses:['計画の完遂が苦手','議論をふっかけがち','ルーティンが苦手'],relationships:'刺激的で、常に新しいインスピレーションを与え合える、退屈しない関係を好みます。',jobs:['マーケター','クリエイティブディレクター','新規事業開発']},
+  INFJ:{name:'提唱者',desc:'物静かですが、非常に強い信念を持つ理想主義者です。',strengths:['深い洞察力','強い利他主義','創造的な解決力'],weaknesses:['燃え尽きやすい','批判への弱さ','本音を隠しがち'],relationships:'少数精鋭の、極めて深く精神的な繋がりを求めます。相手の感情の機微にとても敏感です。',jobs:['心理カウンセラー','人事・育成担当','デザイナー']},
+  INFP:{name:'仲介者',desc:'親切で利他的、自身の価値観に忠実な芸術家肌です。',strengths:['豊かな想像力','深い共感性','柔軟な姿勢'],weaknesses:['現実逃避しがち','自己批判に陥りやすい','対立の回避'],relationships:'お互いの価値観を深く尊重し、精神的に支え合えるロマンチックで誠実な関係を築きます。',jobs:['ライター・作家','翻訳・通訳家','カウンセラー']},
+  ENFJ:{name:'主人公',desc:'カリスマ性があり、人々を励まし導くリーダーです。',strengths:['高い対人能力','他者の成長を促す','強い責任感'],weaknesses:['お節介になりがち','批判に傷つきやすい','理想主義すぎる'],relationships:'温かく、互いに高め合える関係を築きます。周囲の人に尽くすことに大きな幸せを感じます。',jobs:['教師・トレーナー','PRマネージャー','キャリアコーチ']},
+  ENFP:{name:'広報運動家',desc:'情熱的で独創的、社交的で自由な精神の持ち主です。',strengths:['卓越したコミュ力','圧倒的な熱量','柔軟なアイデア発想'],weaknesses:['集中力の維持が苦手','楽観的すぎる','事務作業への嫌悪'],relationships:'ワクワクする経験を共有できる相手を求めます。感情表現が豊かで、周囲を笑顔にします。',jobs:['商品企画','ジャーナリスト','カスタマーサクセス']},
+  ISTJ:{name:'管理者',desc:'実用的で事実に基づき、規則や約束を厳守する実務家です。',strengths:['高い誠実さと責任感','細部への注意力','計画の確実な実行'],weaknesses:['変化への抵抗','頑固になりがち','感情への配慮不足'],relationships:'安定と信頼を何よりも重んじます。一度約束したことは必ず守る、非常に実直なパートナーです。',jobs:['会計士・財務','公務員','オペレーションマネージャー']},
+  ISFJ:{name:'擁護者',desc:'非常に献身的で温かく、周囲を静かに支える守護者です。',strengths:['高いサポート能力','優れた忍耐力','実務スキルの高さ'],weaknesses:['変化を嫌う','自己犠牲がすぎる','溜め込みやすい'],relationships:'伝統的で安定した関係を築きます。相手の好意には何倍にもして返す、とても義理堅い性格です。',jobs:['看護師・医療職','総務・事務職','カスタマーサポート']},
+  ESTJ:{name:'幹部',desc:'秩序と伝統を重んじ、組織を効率的に管理する実力派です。',strengths:['優れた組織力','迅速な決断','強い責任感'],weaknesses:['融通が利かない','感情表現が苦手','他者への厳しさ'],relationships:'明確な役割と相互の責任を重んじます。誠実でストレートなコミュニケーションを好みます。',jobs:['ファシリティマネージャー','営業責任者','警察官・セキュリティ']},
+  ESFJ:{name:'領事官',desc:'思いやりがあり社交的で、周囲の調和を保つ人気者です。',strengths:['協調性の高さ','実践的な支援力','強い忠誠心'],weaknesses:['他人の評価を気にしすぎる','批判への脆さ','新しい試みへの躊躇'],relationships:'和気あいあいとした温かい関係を求めます。記念日やイベントを大切にし、人を細やかにケアします。',jobs:['ウェディングプランナー','総務・人事','医療ソーシャルワーカー']},
+  ISTP:{name:'巨匠',desc:'冷静な観察眼を持ち、実践的なアプローチで問題を解決します。',strengths:['危機下での冷静さ','論理的・合理的な思考','高い適応力'],weaknesses:['一匹狼になりがち','感情的対話の回避','リスクを取りすぎる'],relationships:'お互いのプライベートや自由を尊重し、独立性を保てる関係を好みます。行動で絆を示します。',jobs:['ソフトウェアテスター','メカニック・技術職','消防士']},
+  ISFP:{name:'冒険家',desc:'柔軟で魅力的、独自の美意識を持つ芸術家タイプです。',strengths:['豊かな感受性','他者への優しさ','今を楽しむ能力'],weaknesses:['長期計画が苦手','予測不可能な行動','自己主張の弱さ'],relationships:'言葉よりも、一緒に過ごす時間や行動で愛情を示します。リラックスできる穏やかな関係を好みます。',jobs:['UI/UXデザイナー','アーティスト・シェフ','美容師']},
+  ESTP:{name:'起業家',desc:'エネルギッシュで行動力抜群、スリルを楽しむ実践家です。',strengths:['優れた観察眼','圧倒的な実行力','高い対人魅力'],weaknesses:['規律やルールの軽視','長期視野の欠如','飽きっぽさ'],relationships:'アクションやスリルを共有できる、エキサイティングで退屈しないダイナミックな関係を好みます。',jobs:['営業・販売','起業家','スポーツマネジメント']},
+  ESFP:{name:'エンターテイナー',desc:'自発的でエネルギッシュ、周囲を楽しませるパフォーマーです。',strengths:['場を盛り上げる才能','優れた観察力','実践的な対応力'],weaknesses:['計画性のなさ','批判への過敏さ','対立の回避'],relationships:'一緒にいて楽しく、感情をストレートに分かち合える関係を求めます。愛情豊かで開放的です。',jobs:['イベントプランナー','ツアーコーディネーター','エンターテインメント職']},
 };
 
 let mbti = { phase:'welcome', cur:0, ans:{} };
@@ -915,11 +927,15 @@ function calcAndShowResult(){
 
 function renderMbtiResult(){
   const{type,pct}=mbti;
-  const info=MBTI_INFO[type]||{name:type,tagline:'',desc:''};
+  const info=MBTI_INFO[type]||{name:type,desc:'',strengths:[],weaknesses:[],relationships:'',jobs:[]};
   document.getElementById('mbti-t4').textContent=type;
   document.getElementById('mbti-tnm').textContent=info.name;
-  document.getElementById('mbti-ttl').textContent=info.tagline;
-  document.getElementById('mbti-tdesc').textContent=info.desc;
+  document.getElementById('mbti-ttl').textContent=info.desc;
+  const mkTags=(arr,cls)=>arr.map(t=>`<span class="mbti-tag ${cls}">${t}</span>`).join('');
+  document.getElementById('mbti-strengths').innerHTML=mkTags(info.strengths||[],'str');
+  document.getElementById('mbti-weaknesses').innerHTML=mkTags(info.weaknesses||[],'wkn');
+  document.getElementById('mbti-relationships').textContent=info.relationships||'';
+  document.getElementById('mbti-jobs').innerHTML=mkTags(info.jobs||[],'job');
   const dims=[
     {l:'E',r:'I',ll:'外向型 (E)',rl:'内向型 (I)'},
     {l:'S',r:'N',ll:'感覚型 (S)',rl:'直観型 (N)'},
