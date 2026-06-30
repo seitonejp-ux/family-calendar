@@ -10,6 +10,7 @@ export default defineConfig(({ mode }) => ({
     rollupOptions: {
       input: {
         main: resolve(__dirname, 'index.html'),
+        mbti: resolve(__dirname, 'mbti.html'),
         macbook: resolve(__dirname, 'macbook.html'),
       },
     },

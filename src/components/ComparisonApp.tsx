@@ -250,8 +250,18 @@ export default function ComparisonApp() {
       <MeshBackground />
       <div className="min-h-screen font-sans text-[#1D1D1F] antialiased">
 
+        {/* Nav */}
+        <div className="px-6 pt-5">
+          <a
+            href="./"
+            className="text-[11px] font-semibold tracking-[0.12em] text-[#AEAEB2] hover:text-[#6E6E73] transition-colors"
+          >
+            ← Home
+          </a>
+        </div>
+
         {/* Hero */}
-        <section className="text-center px-6 pt-24 pb-20">
+        <section className="text-center px-6 pt-14 pb-20">
           <p className="text-[10.5px] font-semibold tracking-[0.22em] text-[#6E6E73] uppercase mb-5">Performance</p>
           <h1 className="text-4xl sm:text-5xl md:text-[3.5rem] font-bold tracking-tight leading-[1.06] text-[#1D1D1F] mb-5">
             Mac Upgrade Simulator
