@@ -1,8 +1,8 @@
 import { useState, useEffect } from 'react';
 import macbooks from '../data/macbooks.json';
 
-const MAX_CPU = 20000;
-const MAX_GPU = 70000;
+const MAX_CPU = 35000;
+const MAX_GPU = 150000;
 
 interface BarWidths {
   cpuA: number; cpuB: number;
@@ -11,7 +11,7 @@ interface BarWidths {
 
 export default function ComparisonApp() {
   const [modelA, setModelA] = useState(macbooks[0]);
-  const [modelB, setModelB] = useState(macbooks[3]);
+  const [modelB, setModelB] = useState(macbooks[macbooks.length - 1]);
   const [bars, setBars] = useState<BarWidths>({ cpuA: 0, cpuB: 0, gpuA: 0, gpuB: 0 });
 
   // Reset to 0 then animate to target on every model change (and on mount)
@@ -138,6 +138,11 @@ export default function ComparisonApp() {
               </tr>
             </thead>
             <tbody className="divide-y divide-gray-100 dark:divide-gray-800 text-sm md:text-base">
+              <tr>
+                <td className="py-5 text-gray-500">Display</td>
+                <td className="py-5 pr-4">{modelA.display}</td>
+                <td className="py-5 font-medium">{modelB.display}</td>
+              </tr>
               <tr>
                 <td className="py-5 text-gray-500">Ports</td>
                 <td className="py-5 pr-4">{modelA.ports}</td>
