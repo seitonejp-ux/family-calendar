@@ -1,0 +1,46 @@
+[
+  {
+    "id": "mbp-2018-i5",
+    "year": 2018,
+    "name": "MacBook Pro 13-inch",
+    "chip": "Intel Core i5",
+    "cpuScore": 3500,
+    "gpuScore": 8000,
+    "ports": "Thunderbolt 3 x 4",
+    "watts": "61W",
+    "weight": "1.37 kg"
+  },
+  {
+    "id": "mba-2020-m1",
+    "year": 2020,
+    "name": "MacBook Air 13-inch",
+    "chip": "Apple M1",
+    "cpuScore": 8300,
+    "gpuScore": 21000,
+    "ports": "Thunderbolt / USB 4 x 2",
+    "watts": "30W",
+    "weight": "1.29 kg"
+  },
+  {
+    "id": "mba-2024-m3",
+    "year": 2024,
+    "name": "MacBook Air 13-inch",
+    "chip": "Apple M3",
+    "cpuScore": 12000,
+    "gpuScore": 41000,
+    "ports": "Thunderbolt / USB 4 x 2, MagSafe 3",
+    "watts": "30W / 70W",
+    "weight": "1.24 kg"
+  },
+  {
+    "id": "mba-2026-m5",
+    "year": 2026,
+    "name": "MacBook Air 13-inch",
+    "chip": "Apple M5",
+    "cpuScore": 18500,
+    "gpuScore": 65000,
+    "ports": "Thunderbolt 4 x 2, MagSafe 3",
+    "watts": "30W / 70W",
+    "weight": "1.24 kg"
+  }
+]
